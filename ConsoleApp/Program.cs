@@ -12,7 +12,7 @@
 //Dopuszczalny jest tylko jeden plik w rpojekcie z instrukcjami najwyższego poziomu
 Console.WriteLine("Hello, World!");
 
-Product product1 = new Product();
+Product product1 = new Product() { Price = 33 };
 Product product2 = new Product("marchew", 23);
 
 product1.SetName("Test");
@@ -31,6 +31,20 @@ Console.WriteLine(product1.ExpirationDate);
 Console.WriteLine(product2.ExpirationDate);
 
 Console.WriteLine(product2.CreateDescription());
+
+
+Person person1 = new Person
+{
+    LastName = "Monikowska",
+    FirstName = "Monika"
+};
+//person1.BirthDate = new DateTime(2000,2,2);
+
+Person person2 = new Person("Ewa", "Ewowska", new DateTime(2000, 1, 1));
+
+
+Console.WriteLine(person1.Bio());
+Console.WriteLine(  person2.Bio());
 
 static void Nullable()
 {
