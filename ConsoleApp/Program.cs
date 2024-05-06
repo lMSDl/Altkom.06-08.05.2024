@@ -46,6 +46,11 @@ Person person2 = new Person("Ewa", "Ewowska", new DateTime(2000, 1, 1));
 Console.WriteLine(person1.Bio());
 Console.WriteLine(  person2.Bio());
 
+
+Pizza pizza1 = new Pizza() { Cheese = true, Ham = true };
+
+Pizza pizza2 = new Pizza() { Sauce = true, Ham = true, Tomato = true };
+
 static void Nullable()
 {
     //? - obiket nullowalny - skrót od Nullable<int>
