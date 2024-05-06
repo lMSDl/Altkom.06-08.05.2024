@@ -10,6 +10,29 @@ namespace ConsoleApp.Models
     //pełna nazwa klasy to <namespace>+<nazwa>
     internal class Product
     {
+        //metoda konstrukcyjna  (konstruktor) - bezparametrowy
+        //brak określenia typu zwracanego i nazwa taka sama jak nazwa klasy
+        //jeśli klasa nie ma żadnego zdefiniowanego konstruktora, to konstruktor bezparametrowy jest generowany automatycznie
+        //metody konstrukcyjne są potrzebne, aby wstępnie skonfugorować produkt
+        public Product()
+        {
+            ExpirationDate = DateTime.Now;
+        }
+        //przeciążenie metody konstrukcyjnej = wiele metod o tej samej nazwie, ale przyjmujące inne parametry
+        public Product(string name) : this()
+        {
+            SetName(name);
+        }
+        //konstruktor parametrowy - służy do zapewnienia klasie wartości początkowych przekazanych jako parametry
+        //jeśli w klasie występuje jakiś konstuktor parametrowy, to konstuktor bezparametrowy nie zostanie automatycznie wygenerowany
+        //chcąc posiadać jednocześnie konstruktor parametrowy i bezparametrowy musimy go jawnie utworzyć
+        //: this(..) - odwołanie się do innego konstruktora. W ten sposób tworzy się konstruktory teleskopowe (rozszeżają swoje możliwości niwelując powtarzający się kod)
+        public Product(string name, int price) : this(name)
+        {
+            Price = price;
+        }
+
+
         //pole klasy (field)
         //private - oznacza dostęp tylko dla elementów danej klasy
         //brak modyfikatora dostępu == private

@@ -13,24 +13,24 @@
 Console.WriteLine("Hello, World!");
 
 Product product1 = new Product();
-Product product2 = new Product();
+Product product2 = new Product("marchew", 23);
 
 product1.SetName("Test");
 Console.WriteLine( product1.GetName() );
 
-product2.SetName("marchew");
+//product2.SetName("marchew");
 Console.WriteLine(product2.GetName());
 
 
 product1.Price = 12;
-product2.Price = 23;
+//product2.Price = 23;
 
 product1.ExpirationDate = new DateTime(2024, 4, 12);
-product2.ExpirationDate = new DateTime(2024, 6, 22);
+//product2.ExpirationDate = new DateTime(2024, 6, 22);
 Console.WriteLine(product1.ExpirationDate);
 Console.WriteLine(product2.ExpirationDate);
 
-Console.WriteLine(product1.CreateDescription());
+Console.WriteLine(product2.CreateDescription());
 
 static void Nullable()
 {
