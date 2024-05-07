@@ -1,4 +1,17 @@
 ﻿
+using ConsoleApp.Delegates;
+
+new DelegatesExample().Test();
+
+bool CheckModulo(int a, int b)
+{
+        return a % b == 0;
+}
+
+Console.WriteLine(  new DelegatesExample().Check(CheckModulo, 10, 2)  );
+
+new MulticastDelegateExample().Test();
+
 
 //namespace ConsoleApp
 //{

@@ -8,8 +8,8 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Using Remove="System"/>
-		<Using Include="ConsoleApp.Models"/>
+		<Using Remove="System" />
+		<Using Include="ConsoleApp.Models" />
 	</ItemGroup>
 	
 </Project>
