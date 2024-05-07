@@ -83,7 +83,7 @@ namespace Warehouse
 
         protected abstract T CreateNew();
 
-        protected string GetString(string label)
+        public static string GetString(string label)
         {
             Console.WriteLine($"{label}:");
             string data = Console.ReadLine();
@@ -92,7 +92,7 @@ namespace Warehouse
 
 
 
-        protected float GetFloat(string label)
+        public static float GetFloat(string label)
         {
             string data = GetString(label);
 
@@ -112,7 +112,7 @@ namespace Warehouse
             }
         }
 
-        protected int GetInt(string label)
+        public static int GetInt(string label)
         {
             string data = GetString(label);
             try
@@ -137,7 +137,7 @@ namespace Warehouse
             }
         }
 
-        protected DateTime GetDateTime(string label)
+        public static DateTime GetDateTime(string label)
         {
             DateTime date;
             bool success;
