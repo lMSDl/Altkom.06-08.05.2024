@@ -139,6 +139,16 @@ int GetInt(string label)
 
 DateTime GetDateTime(string label)
 {
-    string data = GetString(label);
-    return DateTime.Parse(data);
+    DateTime date;
+    bool success;
+    do
+    {
+        string data = GetString(label);
+        //metoda TryParse zamiast rzucać wyjątek przy niepowodzeniu, zwraca informację w postaci bool (true/false) czy parsowanie się powiodło
+        //rezultat parzowania możemy użyskać z drugiego parametru
+        //parametry, który zwracają dodatkowe informacje z funkcji nazywane są parametrami wyjściowymi i muszą być poprzedzone słowem kluczowym "out" zarówno w definicji funkcji jak i podczas jej wywoływania
+        success = DateTime.TryParse(data, out date);
+    } while (!success);
+
+    return date;
 }
