@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Warehouse
 {
+    //dziedziczymy po klasie generycznej i abstakcyjnej dlatego musimy zapewnić ciało dla funkcji abstrakcyjnych z klasy bazowej
     internal class PeopleProgram : GenericProgram<Person>
     {
         protected override Person CreateNew()

@@ -56,7 +56,7 @@ namespace Warehouse
 
             _service.Update(id, product);
         }
-
+        //nie wiemy jak stworzyć element typu T, więc tworzymy metodę abstrakcyjną, której ciało będzie musiało być zapewnione w klasacho pochodnych
         protected abstract T CreateUpdate(T old);
 
         void Delete()
@@ -70,7 +70,7 @@ namespace Warehouse
         {
             foreach (T p in _service.Read())
             {
-                Console.WriteLine(p.ToString());
+                Console.WriteLine(p.ToString()); //wykorzystujemy nadpisaną metodę ToString() w celu zaprezentowania obiektu w formie ciągu znaków
             }
         }
 

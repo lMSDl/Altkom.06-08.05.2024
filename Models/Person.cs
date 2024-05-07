@@ -31,7 +31,6 @@ namespace Models
             return now.Year - BirthDate.Value.Year;
         }
 
-
         public override string ToString()
         {
             return $"{Id}\t{FirstName}\t{LastName}\t{GetAge()}";
