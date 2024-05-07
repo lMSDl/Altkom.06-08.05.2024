@@ -3,7 +3,7 @@ using Services.InMemory;
 using Warehouse;
 
 //wykorzystanie dziedziczenia i generyczności
-GenericProgram<Person> program = new PeopleProgram();
+GenericProgram<Pet> program = new PetsProgram();
 
 program.Run();
 
