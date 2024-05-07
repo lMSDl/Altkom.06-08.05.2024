@@ -11,6 +11,7 @@ bool CheckModulo(int a, int b)
 Console.WriteLine(  new DelegatesExample().Check(CheckModulo, 10, 2)  );
 
 new MulticastDelegateExample().Test();
+new BuildInDelegatesExample().Test();
 
 
 //namespace ConsoleApp
