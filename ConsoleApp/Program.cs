@@ -1,6 +1,7 @@
 ﻿
 using ConsoleApp.Delegates;
 using ConsoleApp.Delegates.Events;
+using ConsoleApp.Delegates.Lambda;
 
 new DelegatesExample().Test();
 
@@ -25,6 +26,8 @@ eventsExamples.OddNumberEvent += Console.WriteLine;
 eventsExamples.Test();
 
 Console.WriteLine("------------");
+
+new LINQ().Test();
 
 //namespace ConsoleApp
 //{
