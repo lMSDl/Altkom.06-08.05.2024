@@ -51,6 +51,12 @@ namespace ConsoleApp.Delegates.Lambda
             var result7 = people.Select(x => DateTime.Now.Year - x.BirthDate.Value.Year).Average();
 
             var result8 = people.Select(x => x.FirstName).Aggregate((a, b) => $"{a}, {b}");
+
+            //1. posortować kolekcję strings po ilości liter w wyrazach
+            //2. Zsumować wartości kolekcji numbers
+            //3. Z People wybrać osoby, które mają na imię Piotr lub Ewa
+            //4. z People wybrać osoby w wieku 50+ i wybrać ich nazwisko małymi literami
+            //5. wybrać pojedynczą osobę z imieniem dłuższym niż 3 znaki
         }
     }
 }
