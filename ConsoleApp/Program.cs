@@ -1,5 +1,6 @@
 ﻿
 using ConsoleApp.Delegates;
+using ConsoleApp.Delegates.Events;
 
 new DelegatesExample().Test();
 
@@ -13,6 +14,17 @@ Console.WriteLine(  new DelegatesExample().Check(CheckModulo, 10, 2)  );
 new MulticastDelegateExample().Test();
 new BuildInDelegatesExample().Test();
 
+Console.WriteLine("------------");
+
+EventsExample eventsExamples = new EventsExample();
+
+eventsExamples.OddNumberDelegate = Console.WriteLine;
+//event "opakowuje" delegata i zabrania wyczyszczenia listy "subskrybentów" przez przypisanie funkcji za pomocą "="
+eventsExamples.OddNumberEvent += Console.WriteLine;
+
+eventsExamples.Test();
+
+Console.WriteLine("------------");
 
 //namespace ConsoleApp
 //{
