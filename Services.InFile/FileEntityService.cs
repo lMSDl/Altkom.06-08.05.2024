@@ -71,6 +71,10 @@ namespace Services.InFile
             //using StreamReader streamReader = new StreamReader(fileStream);
             //string json = streamReader.ReadToEnd();
 
+            if(!File.Exists(FilePath))
+            {
+                return;
+            }
             string json = File.ReadAllText(FilePath);
 
             List<T> items = JsonConvert.DeserializeObject<List<T>>(json);
