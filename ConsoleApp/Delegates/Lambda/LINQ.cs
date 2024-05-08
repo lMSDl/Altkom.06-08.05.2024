@@ -53,10 +53,17 @@ namespace ConsoleApp.Delegates.Lambda
             var result8 = people.Select(x => x.FirstName).Aggregate((a, b) => $"{a}, {b}");
 
             //1. posortować kolekcję strings po ilości liter w wyrazach
+            var task1Query = from str in strings orderby str.Length select str;
+            var result9 = strings.OrderBy(str => str.Length).ToList();
             //2. Zsumować wartości kolekcji numbers
+            var result10 = numbers.Sum();
             //3. Z People wybrać osoby, które mają na imię Piotr lub Ewa
+            var result11 = people.Where(x => x.FirstName == "Piotr" || x.FirstName == "Ewa").OrderBy(x => x.FirstName).ThenBy(x => x.LastName).ToList();
             //4. z People wybrać osoby w wieku 50+ i wybrać ich nazwisko małymi literami
+            var result12 = people.Where(person => DateTime.Now.Year - person.BirthDate.Value.Year > 50).Select(x => x.LastName/*).Select(x => x*/.ToLower()).ToList();
             //5. wybrać pojedynczą osobę z imieniem dłuższym niż 3 znaki
+            var result13 = people.Where(x => x.FirstName.Count() > 3).First();
+            //var result13 = people.First(x => x.FirstName.Count() > 3);
         }
     }
 }
