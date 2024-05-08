@@ -123,6 +123,18 @@
   <data name="BirthDate" xml:space="preserve">
     <value>Birth date</value>
   </data>
+  <data name="Commands" xml:space="preserve">
+    <value>Commands</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>exit</value>
+  </data>
   <data name="ExpirationDate" xml:space="preserve">
     <value>Expiration date</value>
   </data>
@@ -137,5 +149,8 @@
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>update</value>
   </data>
 </root>

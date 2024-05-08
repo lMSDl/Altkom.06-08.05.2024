@@ -1,5 +1,6 @@
 ﻿using Models;
 using Services.InMemory;
+using Warehouse.Properties;
 
 namespace Warehouse
 {
@@ -16,12 +17,34 @@ namespace Warehouse
             {
                 Console.Clear();
                 Show();
-                Console.WriteLine("Commands: create, update, delete, exit");
+                Console.WriteLine($"{Resources.Commands}: {Resources.Create}, {Resources.Update}, {Resources.Delete}, {Resources.Exit}");
 
 
                 string input = Console.ReadLine();
 
-                switch (input)
+                if(input == Resources.Exit)
+                {
+                    exit = true;
+                }
+                else if(input == Resources.Create)
+                {
+                    Create();
+                }
+                else if (input == Resources.Update)
+                {
+                    Update();
+                }
+                else if (input == Resources.Delete)
+                {
+                    Delete();
+                }
+                else
+                {
+                    Console.WriteLine("command not found...");
+                    Console.ReadLine();
+                }
+
+                /*switch (input)
                 {
                     case "exit":
                         exit = true;
@@ -39,7 +62,7 @@ namespace Warehouse
                         Console.WriteLine("command not found...");
                         Console.ReadLine();
                         break;
-                }
+                }*/
 
 
             } while (!exit);
