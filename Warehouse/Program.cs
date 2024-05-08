@@ -1,4 +1,6 @@
 ﻿using Models;
+using Services.InFile;
+using Services.InMemory;
 using System.Globalization;
 using Warehouse;
 using Warehouse.Properties;
@@ -23,7 +25,7 @@ using Warehouse.Properties;
     });*/
 
 
-GenericProgram<Person> program = new PeopleProgram();
+GenericProgram<Person> program = new PeopleProgram(new FileEntityService<Person>("data.json"));
 
 program.Run();
 

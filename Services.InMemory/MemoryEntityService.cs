@@ -1,55 +1,56 @@
 ﻿using Models;
+using Services.Interfaces;
 
 namespace Services.InMemory
 {
     //klasa generyczna
     // where T : Entity - klasy podstawiane za T muszą dziedziczyć po wskazanej klasie
     // w tym przypadku T musi dziedziczyć po Entity ponieważ potrzebujemy informacji o właściwosći Id
-    public class EntityService<T> where T : Entity
+    public class MemoryEntityService<T> : IEntityService<T> where T : Entity
     {
-        private List<T> _entities;
+        protected List<T> Entities { get; }
 
-        public EntityService()
+        public MemoryEntityService()
         {
             //_products = new List<T>();
-            _entities = new();
+            Entities = new();
         }
 
-        public void Create(T entity)
+        public virtual void Create(T entity)
         {
-            entity.Id = _entities.Select(x => x.Id).DefaultIfEmpty().Max() + 1;
+            entity.Id = Entities.Select(x => x.Id).DefaultIfEmpty().Max() + 1;
 
-            _entities.Add(entity);
+            Entities.Add(entity);
         }
 
         public T? Read(int id)
         {
-            return _entities.Where(x => x.Id == id).SingleOrDefault();
+            return Entities.Where(x => x.Id == id).SingleOrDefault();
             //return _entities.Where(x => x.Id == id).DefaultIfEmpty().Single();
         }
 
         public List<T> Read()
         {
-            return _entities.ToList();
+            return Entities.ToList();
         }
 
-        public bool Update(int id, T entity)
+        public virtual bool Update(int id, T entity)
         {
             T? e = Read(id);
             if(e == null)
                 return false;
 
-            int index = _entities.IndexOf(e);
-            _entities.Remove(e);
+            int index = Entities.IndexOf(e);
+            Entities.Remove(e);
 
             entity.Id = id;
-            _entities.Insert(index, entity);
+            Entities.Insert(index, entity);
             return true;
         }
 
-        public bool Delete(int id)
+        public virtual bool Delete(int id)
         {
-            int deleted = _entities.RemoveAll(x => x.Id == id);
+            int deleted = Entities.RemoveAll(x => x.Id == id);
             return deleted != 0;
         }
 

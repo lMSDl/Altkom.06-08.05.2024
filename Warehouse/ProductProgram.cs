@@ -1,4 +1,5 @@
 ﻿using Models;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace Warehouse
 {
     internal class ProductProgram : GenericProgram<Product>
     {
+        public ProductProgram(IEntityService<Product> service) : base(service)
+        {
+        }
+
         protected override Product CreateNew()
         {
             return new Product()

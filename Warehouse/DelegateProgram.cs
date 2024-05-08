@@ -1,4 +1,5 @@
 ﻿using Models;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Warehouse
         private Func<T> create;
         private Func<T, T> update;
 
-        public DelegateProgram(Func<T> create, Func<T, T> update)
+        public DelegateProgram(IEntityService<T> service, Func<T> create, Func<T, T> update) : base(service)
         {
             this.create = create;
             this.update = update;

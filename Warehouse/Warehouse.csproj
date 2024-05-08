@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Services.InFile\Services.InFile.csproj" />
     <ProjectReference Include="..\Services.InMemory\Services.InMemory.csproj" />
   </ItemGroup>
 

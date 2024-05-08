@@ -20,7 +20,7 @@ namespace Models
         [XmlIgnore]
         //biblioteka Newtonsoft.Json używa adnotacji o takiej samej nazwie, więc trzeba rozróżnić je po namespace
         [System.Text.Json.Serialization.JsonIgnore]
-        [Newtonsoft.Json.JsonIgnore]
+        //[Newtonsoft.Json.JsonIgnore]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }

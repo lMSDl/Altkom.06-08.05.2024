@@ -6,13 +6,19 @@ using System.Xml.Serialization;
 using Warehouse.Properties;
 using Newtonsoft.Json;
 using System.Xml;
+using Services.Interfaces;
 
 namespace Warehouse
 {
     internal abstract class GenericProgram<T> where T : Entity
     {
 
-        EntityService<T> _service = new EntityService<T>();
+        IEntityService<T> _service;
+
+        public GenericProgram(IEntityService<T> service)
+        {
+            _service = service;
+        }
 
         public void Run()
         {
