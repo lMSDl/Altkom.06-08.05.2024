@@ -4,6 +4,8 @@ using System.Text;
 using System.Text.Json;
 using System.Xml.Serialization;
 using Warehouse.Properties;
+using Newtonsoft.Json;
+using System.Xml;
 
 namespace Warehouse
 {
@@ -80,35 +82,59 @@ namespace Warehouse
         }
         void ToXml()
         {
-            int id = GetInt("Id");
+            /*int id = GetInt("Id");
             T item = _service.Read(id);
             if (item == null)
                 return;
 
+            //serializacja do XML wykorzystując biblioteki standardowe
+            //wymagana jest osobna konfiguracja serializacji dla XML i JSON
             XmlSerializer xmlSerializer = new XmlSerializer(item.GetType());
-            using MemoryStream stream = new MemoryStream();
+            using MemoryStream stream = new MemoryStream(); //wykorzystuje klasy strumieniowe
             xmlSerializer.Serialize(stream, item);
 
-            string xml = Encoding.Default.GetString(stream.ToArray());
-            Console.WriteLine(xml);
+            string xml = Encoding.Default.GetString(stream.ToArray());*/
+
+            //funkcja ToJson zwraca nam jsona z którego zostanie utworzony XML
+            string json = ToJson();
+
+            //Serializacja do XML z wykorzystaniem Newtonsoft.Json opiera się o wytworzonego wcześniej Jsona
+            //pozwala to posiadać jedną konfigurację serializacj do obu formatów
+            XmlDocument xml = JsonConvert.DeserializeXmlNode(json, typeof(T).Name); //drugi parametr określa nazwę głównego obiektu, typeof() - pobiera dane o typie
+
+
+            Console.WriteLine(xml.InnerXml);
             Console.ReadLine();
         }
 
-        void ToJson()
+        string? ToJson()
         {
             int id = GetInt("Id");
             T item = _service.Read(id);
             if (item == null)
-                return;
+                return null;
 
-            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+
+            //opcje serializacji do json z bibliotek standardowych
+            /*JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
             jsonSerializerOptions.WriteIndented = true;
             jsonSerializerOptions.IgnoreReadOnlyProperties = true;
             jsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 
-            string json = JsonSerializer.Serialize(item, jsonSerializerOptions);
+            //serializacja za pomocą bibliotek standardowych
+            string json = JsonSerializer.Serialize(item, jsonSerializerOptions);*/
+
+            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            jsonSerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
+            jsonSerializerSettings.DateFormatString = "yyyy MMM d";
+
+            //serializacja do json z wykorzystaniem Newtonsoft.Json
+            string json = JsonConvert.SerializeObject(item, jsonSerializerSettings);
+
             Console.WriteLine( json );
             Console.ReadLine();
+            return json;
         }
 
         void Update()

@@ -18,7 +18,7 @@ namespace Warehouse
 
         protected override Person CreateUpdate(Person old)
         {
-            return new Person(GetString($"{Resources.FistName} ({old.FirstName})"), GetString($"{Resources.LastName} ({old.LastName})"), GetDateTime($"{Resources.BirthDate} ({old.BirthDate})"));
+            return new Person(GetString($"{Resources.FistName} ({old.FirstName})"), null, GetDateTime($"{Resources.BirthDate} ({old.BirthDate})"));
         }
     }
 }
