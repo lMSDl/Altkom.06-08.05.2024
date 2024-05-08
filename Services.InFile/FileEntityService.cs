@@ -8,8 +8,9 @@ namespace Services.InFile
     //dziedziczymy po MemoryEntityService, poniważ chcemy skorzystać z tam zapisanej funkcjonalności a tylko dodać opcje zapisu
     public class FileEntityService<T> : MemoryEntityService<T>, IEntityService<T> where T : Entity
     {
-        public string FilePath { get; }
+        public string FilePath { get; protected set; }
 
+        protected FileEntityService() { }
         public FileEntityService(string filePath)
         {
             FilePath = filePath;
@@ -48,10 +49,16 @@ namespace Services.InFile
 
             string json = JsonConvert.SerializeObject(Entities, settings);
 
+
+            WriteToFile(json);
+        }
+
+        protected virtual void WriteToFile(string json)
+        {
             //klasy strumieniowe - klasy opierające swoje działanie na strumieniu byteów
             //wykorzustanie using spowoduje automatyczne wywołanie funkcji Dispose
             //using FileStream fileStream = new FileStream(FilePath, FileMode.Create);
-            
+
             //using StreamWriter streamWriter = new StreamWriter(fileStream); //klasa pomocnicza do zapisu danych do strumienia obsługująca tekst
             //streamWriter.Write(json);
             //metoda flush wymusza wypchnięcie danych do strumienia
@@ -62,26 +69,33 @@ namespace Services.InFile
 
             //File - fasada ułatwiająca pracę z plikami
             File.WriteAllText(FilePath, json);
-
         }
 
-        private void LoadFromFile()
+        protected void LoadFromFile()
         {
-            //using FileStream fileStream = new FileStream(FilePath, FileMode.OpenOrCreate);
-            //using StreamReader streamReader = new StreamReader(fileStream);
-            //string json = streamReader.ReadToEnd();
-
-            if(!File.Exists(FilePath))
+            if (!File.Exists(FilePath))
             {
                 return;
             }
-            string json = File.ReadAllText(FilePath);
 
+            string json = ReadFromFile();
             List<T> items = JsonConvert.DeserializeObject<List<T>>(json);
 
             if(items != null)
                 Entities.AddRange(items);
 
         }
+
+        protected virtual string? ReadFromFile()
+        {
+            //using FileStream fileStream = new FileStream(FilePath, FileMode.OpenOrCreate);
+            //using StreamReader streamReader = new StreamReader(fileStream);
+            //string json = streamReader.ReadToEnd();
+
+            
+            return File.ReadAllText(FilePath);
+        }
+
+
     }
 }

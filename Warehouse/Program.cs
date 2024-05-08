@@ -25,7 +25,7 @@ using Warehouse.Properties;
     });*/
 
 
-GenericProgram<Person> program = new PeopleProgram(new FileEntityService<Person>("data.json"));
+GenericProgram<Person> program = new PeopleProgram(new SymmetricFileEntityService<Person>("data.json", "123456"));
 
 program.Run();
 
