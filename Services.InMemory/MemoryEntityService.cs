@@ -6,6 +6,7 @@ namespace Services.InMemory
     //klasa generyczna
     // where T : Entity - klasy podstawiane za T muszą dziedziczyć po wskazanej klasie
     // w tym przypadku T musi dziedziczyć po Entity ponieważ potrzebujemy informacji o właściwosći Id
+    // implementacja interfejsu wygląda podonie do dziedziczenia
     public class MemoryEntityService<T> : IEntityService<T> where T : Entity
     {
         protected List<T> Entities { get; }

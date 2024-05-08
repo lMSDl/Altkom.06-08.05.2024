@@ -2,6 +2,7 @@
 
 namespace Services.Interfaces
 {
+    //interfejs - posiada metody, które muszą implementować klasy zgodne z nim
     public interface IEntityService<T> where T : Entity
     {
         void Create(T entity);
