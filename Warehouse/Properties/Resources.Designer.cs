@@ -176,5 +176,14 @@ namespace Warehouse.Properties {
                 return ResourceManager.GetString("Update", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML.
+        /// </summary>
+        internal static string XML {
+            get {
+                return ResourceManager.GetString("XML", resourceCulture);
+            }
+        }
     }
 }

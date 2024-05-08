@@ -1,6 +1,8 @@
 ﻿using Models;
 using Services.InMemory;
+using System.Text;
 using System.Text.Json;
+using System.Xml.Serialization;
 using Warehouse.Properties;
 
 namespace Warehouse
@@ -18,7 +20,7 @@ namespace Warehouse
             {
                 Console.Clear();
                 Show();
-                Console.WriteLine($"{Resources.Commands}: {Resources.Create}, {Resources.Update}, {Resources.Delete}, {Resources.Json}, {Resources.Exit}");
+                Console.WriteLine($"{Resources.Commands}: {Resources.Create}, {Resources.Update}, {Resources.Delete}, {Resources.Json}, {Resources.XML}, {Resources.Exit}");
 
 
                 string input = Console.ReadLine();
@@ -42,6 +44,10 @@ namespace Warehouse
                 else if (input == Resources.Json)
                 {
                     ToJson();
+                }
+                else if (input == Resources.XML)
+                {
+                    ToXml();
                 }
                 else
                 {
@@ -71,6 +77,21 @@ namespace Warehouse
 
 
             } while (!exit);
+        }
+        void ToXml()
+        {
+            int id = GetInt("Id");
+            T item = _service.Read(id);
+            if (item == null)
+                return;
+
+            XmlSerializer xmlSerializer = new XmlSerializer(item.GetType());
+            using MemoryStream stream = new MemoryStream();
+            xmlSerializer.Serialize(stream, item);
+
+            string xml = Encoding.Default.GetString(stream.ToArray());
+            Console.WriteLine(xml);
+            Console.ReadLine();
         }
 
         void ToJson()

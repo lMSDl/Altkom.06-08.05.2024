@@ -156,4 +156,7 @@
   <data name="Update" xml:space="preserve">
     <value>update</value>
   </data>
+  <data name="XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>

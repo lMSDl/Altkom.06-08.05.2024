@@ -1,10 +1,14 @@
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Models
 {
     public class Person : Entity
     {
+        public Person() { }
+
         public Person(string firstName, string lastName, DateTime birthDate)
         {
             FirstName = firstName;
@@ -12,6 +16,8 @@ namespace Models
             BirthDate = birthDate;
         }
 
+        [XmlIgnore]
+        [JsonIgnore]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
