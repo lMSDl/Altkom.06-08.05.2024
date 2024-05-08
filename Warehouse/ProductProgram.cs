@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Warehouse.Properties;
 
 namespace Warehouse
 {
@@ -14,9 +15,9 @@ namespace Warehouse
         {
             return new Product()
             {
-                Name = GetString("Name"),
-                Price = GetFloat("Price"),
-                ExpirationDate = GetDateTime("Expiration date")
+                Name = GetString(Resources.Name),
+                Price = GetFloat(Resources.Price),
+                ExpirationDate = GetDateTime(Resources.ExpirationDate)
             };
         }
 
@@ -24,9 +25,9 @@ namespace Warehouse
         {
             return new Product
             {
-                Name = GetString($"Name ({old.Name})"),
-                Price = GetFloat($"Price ({old.Price})"),
-                ExpirationDate = GetDateTime($"Expiration date ({old.ExpirationDate})")
+                Name = GetString($"{Resources.Name} ({old.Name})"),
+                Price = GetFloat($"{Resources.Price} ({old.Price})"),
+                ExpirationDate = GetDateTime($"{Resources.ExpirationDate} ({old.ExpirationDate})")
             };
         }
     }

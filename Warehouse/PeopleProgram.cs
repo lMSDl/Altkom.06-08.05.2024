@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Warehouse.Properties;
 
 namespace Warehouse
 {
@@ -12,12 +13,12 @@ namespace Warehouse
     {
         protected override Person CreateNew()
         {
-            return new Person(GetString("Imię"), GetString("Nazwisko"), GetDateTime("Data urodzenia"));
+            return new Person(GetString(Resources.FistName), GetString(Resources.LastName), GetDateTime(Resources.BirthDate));
         }
 
         protected override Person CreateUpdate(Person old)
         {
-            return new Person(GetString($"Imię ({old.FirstName})"), GetString($"Nazwisko ({old.LastName})"), GetDateTime($"Data urodzenia ({old.BirthDate})"));
+            return new Person(GetString($"{Resources.FistName} ({old.FirstName})"), GetString($"{Resources.LastName} ({old.LastName})"), GetDateTime($"{Resources.BirthDate} ({old.BirthDate})"));
         }
     }
 }
