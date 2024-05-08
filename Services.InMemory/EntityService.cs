@@ -17,54 +17,20 @@ namespace Services.InMemory
 
         public void Create(T entity)
         {
-            int maxId = 0;
-
-            foreach (T e in _entities)
-            {
-                if(maxId < e.Id)
-                    maxId = e.Id;
-            }
-
-            maxId = maxId + 1;
-            entity.Id = maxId;
+            entity.Id = _entities.Select(x => x.Id).DefaultIfEmpty().Max() + 1;
 
             _entities.Add(entity);
         }
 
         public T? Read(int id)
         {
-            /*for(int i= 0; i < _entities.Count; i = i + 1 )
-            {
-                Entity e = _entities[i];
-                if (e.Id == id)
-                {
-                    return e;
-                }
-            }*/
-
-            foreach (T e in _entities)
-            {
-                if (e.Id == id)
-                {
-                    return e;
-                }
-            }
-
-            /*IEnumerator<T> enumerator = _entities.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                if(enumerator.Current.Id == id)
-                {
-                    return enumerator.Current;
-                }
-            }*/
-
-            return null;
+            return _entities.Where(x => x.Id == id).SingleOrDefault();
+            //return _entities.Where(x => x.Id == id).DefaultIfEmpty().Single();
         }
 
         public List<T> Read()
         {
-            return new List<T>(_entities);
+            return _entities.ToList();
         }
 
         public bool Update(int id, T entity)
@@ -83,11 +49,8 @@ namespace Services.InMemory
 
         public bool Delete(int id)
         {
-            T? e = Read(id);
-            if (e == null)
-                return false;
-
-            return _entities.Remove(e);
+            int deleted = _entities.RemoveAll(x => x.Id == id);
+            return deleted != 0;
         }
 
 
