@@ -9,7 +9,7 @@ using Warehouse.Properties;
 
 //wykorzystanie dziedziczenia i generyczności
 //stosujmeny wyrażenia lambda do utworzenia wskaźników na funkcje anonimowe (czyli takie, które nie posiadają nazw)
-GenericProgram<Pet> program = new DelegateProgram<Pet>(
+/*GenericProgram<Pet> program = new DelegateProgram<Pet>(
     () =>
         new Pet
         {
@@ -20,7 +20,10 @@ GenericProgram<Pet> program = new DelegateProgram<Pet>(
     {
         Name = GenericProgram<Pet>.GetString($"{Resources.Name} ({old.Name})"),
         Age = GenericProgram<Pet>.GetInt($"{Resources.Age} ({old.Age})")
-    });
+    });*/
+
+
+GenericProgram<Person> program = new PeopleProgram();
 
 program.Run();
 

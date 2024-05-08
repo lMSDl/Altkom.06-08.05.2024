@@ -1,5 +1,6 @@
 ﻿using Models;
 using Services.InMemory;
+using System.Text.Json;
 using Warehouse.Properties;
 
 namespace Warehouse
@@ -17,7 +18,7 @@ namespace Warehouse
             {
                 Console.Clear();
                 Show();
-                Console.WriteLine($"{Resources.Commands}: {Resources.Create}, {Resources.Update}, {Resources.Delete}, {Resources.Exit}");
+                Console.WriteLine($"{Resources.Commands}: {Resources.Create}, {Resources.Update}, {Resources.Delete}, {Resources.Json}, {Resources.Exit}");
 
 
                 string input = Console.ReadLine();
@@ -37,6 +38,10 @@ namespace Warehouse
                 else if (input == Resources.Delete)
                 {
                     Delete();
+                }
+                else if (input == Resources.Json)
+                {
+                    ToJson();
                 }
                 else
                 {
@@ -66,6 +71,23 @@ namespace Warehouse
 
 
             } while (!exit);
+        }
+
+        void ToJson()
+        {
+            int id = GetInt("Id");
+            T item = _service.Read(id);
+            if (item == null)
+                return;
+
+            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+            jsonSerializerOptions.WriteIndented = true;
+            jsonSerializerOptions.IgnoreReadOnlyProperties = true;
+            jsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+            string json = JsonSerializer.Serialize(item, jsonSerializerOptions);
+            Console.WriteLine( json );
+            Console.ReadLine();
         }
 
         void Update()

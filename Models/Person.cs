@@ -14,7 +14,9 @@ namespace Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; }
+        public DateTime? BirthDate { get; set; }
+
+        public int? Age => DateTime.Now.Year - BirthDate?.Year;
 
         public string Bio()
         {
@@ -31,9 +33,6 @@ namespace Models
             return now.Year - BirthDate.Value.Year;
         }
 
-        public override string ToString()
-        {
-            return $"{Id}\t{FirstName}\t{LastName}\t{GetAge()}";
-        }
+        public override string ToString() => $"{Id}\t{FirstName}\t{LastName}\t{GetAge()}"; 
     }
 }

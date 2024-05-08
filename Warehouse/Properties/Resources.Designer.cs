@@ -133,6 +133,15 @@ namespace Warehouse.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Json.
+        /// </summary>
+        internal static string Json {
+            get {
+                return ResourceManager.GetString("Json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last name.
         /// </summary>
         internal static string LastName {
